@@ -1,4 +1,4 @@
-# UN-SDG-Classifier
+# United Nations Sustainable Development Goals Classifier
 
 ## Data source- https://zenodo.org/record/5550238#.YajObJFBzeQ
 ## Detailed information about the modeling- https://github.com/SURYA-LAMICHANEY/UN-SDG-Classifier/blob/main/detailedModeling.ipynb
