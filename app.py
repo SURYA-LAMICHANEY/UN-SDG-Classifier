@@ -36,7 +36,8 @@ def classify(textfile):
     df_predic.index = df_predic.index + 1
     fi= df_predic.sort_values("Probability", ascending = [False])
     return((fi))
-
+import nltk
+nltk.download('stopwords')
 stop = stopwords.words('english')
 porter = PorterStemmer()
 
