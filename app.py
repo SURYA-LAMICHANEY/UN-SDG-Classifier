@@ -11,9 +11,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 #Declaring streamlit containers
-header = st.container()
-body = st.container()
-classify_container = st.container()
+header = st.beta_container()
+body = st.beta_container()
+classify_container = st.beta_container()
 
 #Function which actually classifies text files to sustainable development goals using pretrained model
 def classify(textfile):
@@ -52,7 +52,7 @@ def stemmer(stem_text):
 
 #Header of the webpage
 with header:
-    titl, imga = st.columns(2)
+    titl, imga = st.beta_columns(2)
     imga.image('logo.png')
     titl.title('United Nation Sustainable Development Goals Classifier')
     
@@ -60,7 +60,7 @@ with header:
 with body:
     #Taking text input using one of the 3 ways: entering text, using sample text files or uploading a new text file.
     rawtext = st.text_area('Enter Text Here')
-    sample_col, upload_col = st.columns(2)
+    sample_col, upload_col = st.beta_columns(2)
     sample = sample_col.selectbox('Or select a sample CSR file',  ('None','AsianPaints-19_CSR.txt','Cipla-19_CSR.txt','AxisBank-19_CSR.txt','BajajAuto-19_CSR.txt','BajajFinance-19_CSR.txt'))
     if sample != 'None':
         file = open(sample, "r", encoding='utf-8')
@@ -78,7 +78,7 @@ with body:
                 st.write('Please enter text or upload a file')
             else:
                 #printing the uploaded text on webpage
-                expand = st.expander("Expand to see the uploaded text")
+                expand = st.beta_expander("Expand to see the uploaded text")
                 with expand:
                 	st.write(rawtext)
                 st.text("")
