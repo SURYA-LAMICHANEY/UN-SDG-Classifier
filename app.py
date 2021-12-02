@@ -98,6 +98,6 @@ with body:
                 
                 #Creating a bar plot for probabilities
                 st.subheader("Probability chart")
-                st.bar_chart(df)
+                st.line_chart(df)
                 st.subheader("Conclusion")
                 st.write("The uploaded text matches closest to the goal-",df2["Sustainable Development Goal"].iloc[0], ", with probability ", df2["Probability"].iloc[0])
