@@ -32,10 +32,9 @@ df = pd.read_csv("/home/surya/Desktop/OnlineClass/ThirdSemester/MDSC-302-Big Dat
 df.head()
 
 # keeping only the texts whose suggested sdg labels is accepted and the agreement score is at least .6
-#print('Shape before:', df.shape)
+print('Shape before:', df.shape)
 df = df.query('agreement >= .6 and labels_positive > labels_negative').copy()
-#print('Shape after :', df.shape)
-
+print('Shape after :', df.shape)
 
 #Taking only required columns for modeling
 text_df = df[['sdg', 'text']]
@@ -93,19 +92,19 @@ pipeline = Pipeline(
 classifier = pipeline.fit(X_train, y_train)
 
 #Predicting the output for test set and comparing to get the model accuracy
-#ytest = np.array(y_test)
-#y_pred = classifier.predict(X_test)
-#svm_acc = accuracy_score(y_pred, y_test)
-#print("Accuracy: ",svm_acc)
+ytest = np.array(y_test)
+y_pred = classifier.predict(X_test)
+svm_acc = accuracy_score(y_pred, y_test)
+print("Accuracy: ",svm_acc)
 
 #Calculating prediction probabilities.
-text=["We are also focussing on scaling our adjacent businesses. In Services and Solutions, we are restructuring our distribution channels to cater to different segments while enhancing our manufacturing and execution capability. As we are seeing an urgent need for enhancing health infrastructure in the country, our Nest-In prefabricated product is now being deployed in providing COVID-19 isolation centres and for expansion of COVID-19 bed capacity across the country. We are therefore scaling up capacity and capability in this space. In the New Materials business, we are investing in creating a robust new product funnel while building strategic relationships. Sustainability and climate continues to be core focus areas in our strategy and business operations. We will continue to reduce our carbon emission footprint through process innovation and operational efficiency improvements."]
+sampleText=["We are also focussing on scaling our adjacent businesses. In Services and Solutions, we are restructuring our distribution channels to cater to different segments while enhancing our manufacturing and execution capability. As we are seeing an urgent need for enhancing health infrastructure in the country, our Nest-In prefabricated product is now being deployed in providing COVID-19 isolation centres and for expansion of COVID-19 bed capacity across the country. We are therefore scaling up capacity and capability in this space. In the New Materials business, we are investing in creating a robust new product funnel while building strategic relationships. Sustainability and climate continues to be core focus areas in our strategy and business operations. We will continue to reduce our carbon emission footprint through process innovation and operational efficiency improvements."]
 
-def probCal(text):
-	probs = classifier.predict_proba(text)
+def probCal(sampleText):
+	probs = classifier.predict_proba(sampleText)
 	return probs
 	
-# save the model to disk
+#Saving the model to a pickle file.
 with open('model_pkl', 'wb') as files:
     pickle.dump(classifier, files)
 
